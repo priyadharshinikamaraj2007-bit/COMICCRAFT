@@ -1,0 +1,1 @@
+const form=document.querySelector("form");const button=document.querySelector("#generateBtn");const status=document.querySelector("#status");if(form){form.addEventListener("submit",()=>{button.disabled=true;button.textContent="Creating your comic...";status.textContent="Generating outline, story, illustrations and PDF. This can take a while.";});}

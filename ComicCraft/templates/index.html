@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ComicCraft — AI Comic Creator</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<main class="container">
+<section class="hero">
+<span class="badge">AI STORY STUDIO</span>
+<h1>ComicCraft</h1>
+<p>Turn a simple idea into a five-panel comic with AI-generated narration, dialogue and illustrations.</p>
+</section>
+{% if error %}<div class="error">{{ error }}</div>{% endif %}
+<form action="/generate" method="post" class="card">
+<label>Story Prompt<textarea name="prompt" required placeholder="A brave fox exploring an enchanted forest...">{{ form.prompt if form else "" }}</textarea></label>
+<div class="grid">
+<label>Main Character Name<input name="character_name" value="{{ form.character_name if form else 'Alex' }}"></label>
+<label>Setting<select name="setting">{% for x in ["school","forest","space","city","village"] %}<option {% if form and form.setting == x %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
+<label>Story Tone<select name="tone">{% for x in ["light-hearted","dramatic","poetic","funny","adventurous"] %}<option {% if form and form.tone == x %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
+<label>Art Style<select name="art_style">{% for x in ["anime","pixel art","comic book","realistic"] %}<option {% if form and form.art_style == x %}selected{% endif %}>{{ x }}</option>{% endfor %}</select></label>
+</div>
+<button type="submit" id="generateBtn">Generate My Comic</button>
+<p id="status" class="status"></p>
+</form>
+</main>
+<script src="/static/js/script.js"></script>
+</body>
+</html>
